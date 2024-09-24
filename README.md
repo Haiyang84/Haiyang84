@@ -1,4 +1,4 @@
-Lab#1: Conduct buffer overflow attack on bof1.c, bof2.c, bof3.c programs.
+![{2AA5C6AD-30EF-4D1A-BCBE-E2304C6DA6EA}](https://github.com/user-attachments/assets/c217dd11-9160-42f9-8047-c786866f6ab9)Lab#1: Conduct buffer overflow attack on bof1.c, bof2.c, bof3.c programs.
 ![{8EF66160-18B3-4675-9D73-C58DEEAD9752}](https://github.com/user-attachments/assets/6650dca1-c40a-4c7a-80be-1249435086c3)
 - started by changing directories, move into "Seclabs" folder and then the "buffer-overflow" folder
 - run Docker with docker run, --privileged flag allows the container to access all devices on the host system, especially for  low-level system access may be required, -v flag mounts the local folder C:/Users/nguye/Seclabs to /home/seed/seclabs in the container, allows the container to work with my files
@@ -18,6 +18,17 @@ Segmentation fault the program attempts to continue, but the memory structure is
 - [buf]: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaak�♦  shows the contents of the buffer, 'a' characters have filled the buffer, followed by the memory address provided
 [check] 0x804846b confirms that the value in the memory location being checked is 0x0804846b  is the address of the function that i want to jump to, confirms that my buffer overflow successfully overwrote the return address or function pointer, and the program is now set to jump to 0x0804846b
 You are on the right way! show that the exploit worked correctly
+![{91444646-FCA6-4B5F-8872-F882FDF40FDF}](https://github.com/user-attachments/assets/52b85d3f-5f83-4270-ba0c-8d04e0217828)
+![{2AA5C6AD-30EF-4D1A-BCBE-E2304C6DA6EA}](https://github.com/user-attachments/assets/e507e9c9-7f3b-44a6-b487-f32fbb9a6df1)
+- Compile bof3.c
+- Launch GDB
+-  Inspect the shell(), disassembled the shell(). function appears to call puts(), which prints a string located at address 0x8048540. It ends with a ret instruction, which returns control to the address stored on the stack
+-  echo $(python -c "print('a'*128+'\x5b\x84\x04\x08')") | ./bof3.out creating the Exploit Payload. creates a string of 128 'a' characters, '\x5b\x84\x04\x08' is the memory address of the shell() function (0x0804845b)
+-  You made it! The shell() function is executed  the buffer overflow successfully overwrote the return address, and the program executed the shell() function as intended, puts() inside shell() was designed to print
+
+
+
+
 
 
 
